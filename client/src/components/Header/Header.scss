@@ -4,7 +4,6 @@ header {
   padding-top: 20px;
   background-color: #3a3a3a;
   &.auth {
-    // background-color: #color;
     background: url("../../assets/bg.svg") no-repeat center;
     background-size: cover;
     height: 396px;
@@ -20,24 +19,18 @@ header {
       }
       &__profile {
       }
-      .nav_buttons {
-        display: flex;
-        gap: 20px;
-        &__login,
-        &__register {
-          width: 177px;
-          height: 46px;
-          color: $color-white;
-          background-color: $color-red;
-          text-transform: uppercase;
-          font-weight: bold;
-          font-size: 20px;
-          border: none;
-          cursor: pointer;
-          &:active {
-            transform: scale(0.9);
-          }
+      &__register {
+        background-color: $color-red;
+        border: none;
+        color: $color-white;
+        text-transform: uppercase;
+        padding: 10px 30px;
+        cursor: pointer;
+        &:active {
+          transform: scale(0.9);
         }
+      }
+      .nav_buttons {
       }
     }
     .header__title {

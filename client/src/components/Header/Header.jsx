@@ -1,14 +1,17 @@
 import React from "react";
 import logo from "../../assets/logo.svg";
+import { useNavigate } from "react-router";
 import "./Header.scss";
 
-const Header = ({ auth }) => {
+const Header = ({ token }) => {
   return (
-    <header className={auth && "auth"}>
+    <header className={token && "auth"}>
       <div className="container">
         <nav className="nav">
-          {!auth ? (
-            <img className="nav__logo" src={logo} alt="logo" />
+          {!token ? (
+            <>
+              <img className="nav__logo" src={logo} alt="logo" />
+            </>
           ) : (
             <>
               <button className="nav__add">+ ADD MOVIE</button>
@@ -16,7 +19,7 @@ const Header = ({ auth }) => {
             </>
           )}
         </nav>
-        {auth && (
+        {token && (
           <>
             <h1 className="header__title">find your movie</h1>
             <div className="search_block">

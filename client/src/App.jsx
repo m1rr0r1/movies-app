@@ -1,19 +1,34 @@
 import React, { useEffect, useState } from "react";
-import Home from "./components/Home/Home";
+import { Routes, Route, useNavigate, replace } from "react-router";
 import Header from "./components/Header/Header";
 import UserForm from "./components/forms/UserForm/UserForm";
 import Footer from "./components/Footer/Footer";
 
 const App = () => {
-  const [mode, setMode] = useState("");
-  const [auth, setAuth] = useState(localStorage.getItem("auth"));
+  const [auth, setAuth] = useState({
+    user: JSON.parse(localStorage.getItem("user")) || null,
+    token: localStorage.getItem("token") || null,
+  });
+  const navigate = useNavigate();
 
-  useEffect(() => {});
+  useEffect(() => {
+    !auth.token && navigate("/login", { replace: true });
+    console.log(auth.token);
+  }, []);
 
   return (
     <>
-      <Header auth={auth} />
-      <UserForm mode={mode} />
+      <Header token={auth.token} />
+      <Routes>
+        <Route
+          path="/login"
+          element={<UserForm setAuth={setAuth} mode="login" />}
+        />
+        <Route
+          path="/registration"
+          element={<UserForm mode="registration" />}
+        />
+      </Routes>
       <Footer />
     </>
   );

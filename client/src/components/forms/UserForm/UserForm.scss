@@ -39,13 +39,26 @@
           padding-left: 18px;
           height: 40px;
           width: 90%;
+          color: $color-white;
         }
+      }
+      .registration {
+        text-decoration: none;
+        color: $color-white;
+        display: flex;
+        margin-top: 20px;
+      }
+      .login {
+        text-decoration: none;
+        color: $color-white;
+        display: flex;
+        margin-top: 20px;
       }
       .buttons {
         position: absolute;
         right: 50px;
         bottom: 50px;
-        .reset {
+        .reset_button {
           border: 1px solid $color-red;
           background-color: transparent;
           color: $color-red;
@@ -57,7 +70,18 @@
             transform: scale(0.9);
           }
         }
-        .login {
+        .login_button {
+          background-color: $color-red;
+          border: none;
+          color: $color-white;
+          text-transform: uppercase;
+          padding: 10px 30px;
+          cursor: pointer;
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+        .register_button {
           background-color: $color-red;
           border: none;
           color: $color-white;
@@ -69,8 +93,6 @@
           }
         }
       }
-
-      //   display: flex;
     }
   }
 }

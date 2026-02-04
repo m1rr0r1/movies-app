@@ -8,9 +8,10 @@ import "modern-normalize";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-      </Routes>
+      <App />
+      {/* <Routes> */}
+      {/* <Route path="/" element={<App />} /> */}
+      {/* </Routes> */}
     </BrowserRouter>
   </StrictMode>,
 );
