@@ -1,0 +1,87 @@
+@use "../../sass/base/variables.scss" as *;
+
+header {
+  padding-top: 20px;
+  background-color: #3a3a3a;
+  &.auth {
+    // background-color: #color;
+    background: url("../../assets/bg.svg") no-repeat center;
+    background-size: cover;
+    height: 396px;
+  }
+  .container {
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &__logo {
+      }
+      &__add {
+      }
+      &__profile {
+      }
+      .nav_buttons {
+        display: flex;
+        gap: 20px;
+        &__login,
+        &__register {
+          width: 177px;
+          height: 46px;
+          color: $color-white;
+          background-color: $color-red;
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: 20px;
+          border: none;
+          cursor: pointer;
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+      }
+    }
+    .header__title {
+      color: $color-white;
+      font-weight: normal;
+      text-transform: uppercase;
+      font-size: 40px;
+      text-align: left;
+      margin-left: 60px;
+      margin-top: 57px;
+    }
+
+    .search_block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      margin-top: 38px;
+      &__input {
+        background-color: $color-black;
+        color: $color-white;
+        width: 713px;
+        height: 57px;
+        padding-left: 19px;
+
+        &::placeholder {
+          color: $color-white;
+          font-size: 20px;
+          opacity: 0.3;
+        }
+      }
+      &__button {
+        width: 233px;
+        height: 57px;
+        color: $color-white;
+        background-color: $color-red;
+        text-transform: uppercase;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+    }
+  }
+}

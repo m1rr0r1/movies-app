@@ -1,0 +1,76 @@
+@use "../../../sass/base/variables.scss" as *;
+
+.auth {
+  background-color: #3a3a3a;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 131px;
+  .container {
+    form {
+      width: 576px;
+      height: 500px;
+      background-color: $color-black;
+      padding-top: 63px;
+      padding-bottom: 60px;
+      padding-left: 57px;
+      margin: 0 auto;
+      position: relative;
+
+      h2 {
+        color: $color-white;
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: 40px;
+        text-align: left;
+      }
+
+      label {
+        display: block;
+        color: $color-red;
+        text-align: left;
+        margin-top: 30px;
+        font-weight: 500;
+        letter-spacing: 0.89px;
+        input {
+          display: block;
+          margin-top: 13px;
+          background-color: #323232;
+          border-radius: 4px;
+          padding-left: 18px;
+          height: 40px;
+          width: 90%;
+        }
+      }
+      .buttons {
+        position: absolute;
+        right: 50px;
+        bottom: 50px;
+        .reset {
+          border: 1px solid $color-red;
+          background-color: transparent;
+          color: $color-red;
+          text-transform: uppercase;
+          padding: 10px 30px;
+          cursor: pointer;
+          margin-right: 13px;
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+        .login {
+          background-color: $color-red;
+          border: none;
+          color: $color-white;
+          text-transform: uppercase;
+          padding: 10px 30px;
+          cursor: pointer;
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+      }
+
+      //   display: flex;
+    }
+  }
+}
