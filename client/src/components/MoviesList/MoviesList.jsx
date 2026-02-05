@@ -3,9 +3,13 @@ import Panel from "./Panel/Panel";
 import MovieTile from "./components/MovieTile/MovieTile";
 import "./MoviesList.scss";
 
-const MoviesList = () => {
-  const [movies, setMovies] = useState([]);
-  const [totalAmount, setTotalAmount] = useState("");
+const MoviesList = ({
+  query,
+  movies,
+  setMovies,
+  totalAmount,
+  setTotalAmount,
+}) => {
   const LIMIT = 6;
 
   useEffect(() => {
@@ -33,16 +37,17 @@ const MoviesList = () => {
   return (
     <section className="movies">
       <div className="container">
-        <Panel />
+        <Panel setMovies={setMovies} />
 
         <div className="movies__totalAmount">
           <span>{totalAmount}</span> movies found
         </div>
         <div className="movies__wrapper">
-          {movies.map((movie) => (
+          {movies.map((movie, i) => (
             <MovieTile movie={movie} />
           ))}
         </div>
+        <div className="movies__pages"></div>
       </div>
     </section>
   );

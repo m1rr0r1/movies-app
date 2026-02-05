@@ -1,29 +1,40 @@
 @use "../../../sass/base/variables.scss" as *;
 
-.movies__genres {
-  list-style-type: none;
+.sort {
   display: flex;
-  gap: 30px;
-  li {
-    color: $color-white;
-    text-transform: uppercase;
-    cursor: pointer;
-    .genre {
-      visibility: hidden;
-      height: 2px;
-      width: 100%;
-      background-color: $color-red;
-    }
-    &:hover {
+  justify-content: space-between;
+  align-items: center;
+  .movies__genres {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+    li {
+      color: $color-white;
+      text-transform: uppercase;
+      cursor: pointer;
       .genre {
+        visibility: hidden;
+        height: 2px;
+        width: 100%;
+        background-color: $color-red;
+      }
+      &:hover {
+        .genre {
+          visibility: visible;
+        }
+      }
+      .active_genre {
         visibility: visible;
       }
     }
-    .active_genre {
-      visibility: visible;
-    }
+  }
+
+  .sort_by {
+    color: $color-white;
+    cursor: pointer;
   }
 }
+
 .horizontal {
   height: 2px;
   background-color: $color-dark;

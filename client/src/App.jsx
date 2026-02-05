@@ -12,6 +12,10 @@ const App = () => {
     token: localStorage.getItem("token") || null,
   });
   const [hideHeader, setHideHeader] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [query, setQuery] = useState("");
+  const [totalAmount, setTotalAmount] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +31,10 @@ const App = () => {
         setAuth={setAuth}
         hideHeader={hideHeader}
         setHideHeader={setHideHeader}
+        query={query}
+        setQuery={setQuery}
+        setMovies={setMovies}
+        setTotalAmount={setTotalAmount}
       />
       <Routes>
         <Route
@@ -37,7 +45,18 @@ const App = () => {
           path="/registration"
           element={<UserForm mode="registration" />}
         />
-        <Route path="/movies" element={<MoviesList />} />
+        <Route
+          path="/movies"
+          element={
+            <MoviesList
+              setTotalAmount={setTotalAmount}
+              totalAmount={totalAmount}
+              query={query}
+              movies={movies}
+              setMovies={setMovies}
+            />
+          }
+        />
         <Route path="/movies/add" element={<MovieForm />} />
       </Routes>
       <Footer />

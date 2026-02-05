@@ -3,7 +3,16 @@ import logo from "../../assets/logo.svg";
 import { useNavigate, Link } from "react-router";
 import "./Header.scss";
 
-const Header = ({ auth = {}, setAuth, hideHeader, setHideHeader }) => {
+const Header = ({
+  auth = {},
+  setAuth,
+  hideHeader,
+  setHideHeader,
+  query,
+  setQuery,
+  setMovies,
+  setTotalAmount,
+}) => {
   const [activeProfile, setActiveProfile] = useState(false);
 
   const navigate = useNavigate();
@@ -33,6 +42,33 @@ const Header = ({ auth = {}, setAuth, hideHeader, setHideHeader }) => {
   const addMovie = () => {
     navigate("/movies/add");
     setHideHeader(true);
+  };
+
+  const handleQuery = (e) => {
+    const value = e.target.value.trim();
+    setQuery(value);
+  };
+
+  const clickSearch = async () => {
+    // if (!query) return;
+    try {
+      const response = await fetch(
+        "http://localhost:4000/movies?limit=6&search=" +
+          query +
+          "&searchBy=title",
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setMovies(data.data);
+        setTotalAmount(data.data.length);
+      } else {
+        console.log("Error");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -77,11 +113,15 @@ const Header = ({ auth = {}, setAuth, hideHeader, setHideHeader }) => {
             <h1 className="header__title">find your movie</h1>
             <div className="search_block">
               <input
+                onChange={(e) => handleQuery(e)}
+                value={query}
                 className="search_block__input"
                 type="text"
                 placeholder="What do you want to watch?"
               />
-              <button className="search_block__button">search</button>
+              <button onClick={clickSearch} className="search_block__button">
+                search
+              </button>
             </div>
           </>
         )}
