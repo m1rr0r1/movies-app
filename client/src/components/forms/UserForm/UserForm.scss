@@ -4,11 +4,11 @@
   background-color: #3a3a3a;
   width: 100%;
   min-height: 100vh;
-  padding-top: 131px;
+  padding-top: 50px;
   .container {
     form {
       width: 576px;
-      height: 500px;
+      // height: 570px;
       background-color: $color-black;
       padding-top: 63px;
       padding-bottom: 60px;
@@ -54,10 +54,25 @@
         display: flex;
         margin-top: 20px;
       }
-      .buttons {
+      .error {
+        color: $color-red;
         position: absolute;
-        right: 50px;
-        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 20px;
+      }
+      .success {
+        color: green;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 20px;
+      }
+      .buttons {
+        margin-top: 100px;
+        width: 90%;
+        display: flex;
+        justify-content: flex-end;
         .reset_button {
           border: 1px solid $color-red;
           background-color: transparent;

@@ -5,7 +5,7 @@ import "./Header.scss";
 
 const Header = ({ token }) => {
   return (
-    <header className={token && "auth"}>
+    <header className={token && "authorized"}>
       <div className="container">
         <nav className="nav">
           {!token ? (

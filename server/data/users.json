@@ -14,5 +14,29 @@
     "password": "User123",
     "role": "user",
     "token": "174179047402_User"
+  },
+  {
+    "name": "f",
+    "email": "f",
+    "password": "f",
+    "id": 1770249650326,
+    "role": "user",
+    "token": "1770249650326_f"
+  },
+  {
+    "name": "Arnold",
+    "email": "arnold.girich@gmail.com",
+    "password": "123",
+    "id": 1770250462120,
+    "role": "user",
+    "token": "1770250462120_Arnold"
+  },
+  {
+    "name": "fff",
+    "email": "fff",
+    "password": "ff",
+    "id": 1770254162110,
+    "role": "user",
+    "token": "1770254162110_fff"
   }
 ]

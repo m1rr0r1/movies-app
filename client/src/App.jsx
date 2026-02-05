@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate, replace } from "react-router";
 import Header from "./components/Header/Header";
 import UserForm from "./components/forms/UserForm/UserForm";
 import Footer from "./components/Footer/Footer";
+import Movies from "./components/Movies/Movies";
 
 const App = () => {
   const [auth, setAuth] = useState({
@@ -12,8 +13,9 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    !auth.token && navigate("/login", { replace: true });
-    console.log(auth.token);
+    !auth.token
+      ? navigate("/login", { replace: true })
+      : navigate("/movies", { replace: true });
   }, []);
 
   return (
@@ -28,6 +30,7 @@ const App = () => {
           path="/registration"
           element={<UserForm mode="registration" />}
         />
+        <Route path="/movies" element={<Movies />} />
       </Routes>
       <Footer />
     </>
