@@ -1,0 +1,57 @@
+@use "../../sass/base/variables.scss" as *;
+
+.movies {
+  .container {
+  }
+  &__totalAmount {
+    color: $color-white;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 25px;
+    span {
+      font-weight: bold;
+    }
+  }
+  &__wrapper {
+    margin-top: 27px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+  }
+}
+
+// .movies_list {
+//   .container {
+//     .movies__genres {
+//       list-style-type: none;
+//       display: flex;
+//       gap: 30px;
+//       li {
+//         color: $color-white;
+//         text-transform: uppercase;
+//         cursor: pointer;
+//         .genre {
+//           visibility: hidden;
+//           height: 2px;
+//           width: 100%;
+//           background-color: $color-red;
+//         }
+//         &:hover {
+//           .genre {
+//             visibility: visible;
+//           }
+//         }
+//         .active_genre {
+//           visibility: visible;
+//         }
+//       }
+//     }
+//     .horizontal {
+//       height: 2px;
+//       //   border: 1px solid black;
+//       //   width: 1000px;
+//       background-color: $color-dark;
+//       margin-bottom: 10px;
+//     }
+//   }
+// }

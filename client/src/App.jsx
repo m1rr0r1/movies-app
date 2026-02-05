@@ -3,7 +3,7 @@ import { Routes, Route, useNavigate, replace } from "react-router";
 import Header from "./components/Header/Header";
 import UserForm from "./components/forms/UserForm/UserForm";
 import Footer from "./components/Footer/Footer";
-import Movies from "./components/Movies/Movies";
+import MoviesList from "./components/MoviesList/MoviesList";
 import MovieForm from "./components/forms/MovieForm/MovieForm";
 
 const App = () => {
@@ -37,7 +37,7 @@ const App = () => {
           path="/registration"
           element={<UserForm mode="registration" />}
         />
-        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies" element={<MoviesList />} />
         <Route path="/movies/add" element={<MovieForm />} />
       </Routes>
       <Footer />

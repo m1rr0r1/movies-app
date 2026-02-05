@@ -95,7 +95,7 @@ const UserForm = ({ mode, setAuth }) => {
   };
 
   return (
-    <div className="auth">
+    <section className="auth">
       <div className="container">
         <form>
           <h2>{mode === "login" ? "login" : "registration"}</h2>
@@ -169,7 +169,7 @@ const UserForm = ({ mode, setAuth }) => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

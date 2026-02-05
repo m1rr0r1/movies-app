@@ -117,7 +117,7 @@ export const updateMovie = async ({ params, body }, res) => {
         return item;
       }),
       null,
-      2
+      2,
     );
 
     await fs.writeFileSync("data/movies.json", newData, "utf-8");

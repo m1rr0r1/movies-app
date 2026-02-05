@@ -1,0 +1,30 @@
+@use "../../../sass/base/variables.scss" as *;
+
+.movies__genres {
+  list-style-type: none;
+  display: flex;
+  gap: 30px;
+  li {
+    color: $color-white;
+    text-transform: uppercase;
+    cursor: pointer;
+    .genre {
+      visibility: hidden;
+      height: 2px;
+      width: 100%;
+      background-color: $color-red;
+    }
+    &:hover {
+      .genre {
+        visibility: visible;
+      }
+    }
+    .active_genre {
+      visibility: visible;
+    }
+  }
+}
+.horizontal {
+  height: 2px;
+  background-color: $color-dark;
+}
