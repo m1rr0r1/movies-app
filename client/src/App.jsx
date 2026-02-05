@@ -4,12 +4,14 @@ import Header from "./components/Header/Header";
 import UserForm from "./components/forms/UserForm/UserForm";
 import Footer from "./components/Footer/Footer";
 import Movies from "./components/Movies/Movies";
+import MovieForm from "./components/forms/MovieForm/MovieForm";
 
 const App = () => {
   const [auth, setAuth] = useState({
     user: JSON.parse(localStorage.getItem("user")) || null,
     token: localStorage.getItem("token") || null,
   });
+  const [hideHeader, setHideHeader] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +22,12 @@ const App = () => {
 
   return (
     <>
-      <Header token={auth.token} />
+      <Header
+        auth={auth}
+        setAuth={setAuth}
+        hideHeader={hideHeader}
+        setHideHeader={setHideHeader}
+      />
       <Routes>
         <Route
           path="/login"
@@ -31,6 +38,7 @@ const App = () => {
           element={<UserForm mode="registration" />}
         />
         <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/add" element={<MovieForm />} />
       </Routes>
       <Footer />
     </>

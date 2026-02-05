@@ -1,5 +1,9 @@
 @use "./variables" as *;
 
+* {
+  user-select: none;
+}
+
 html {
   scroll-behavior: smooth;
 }

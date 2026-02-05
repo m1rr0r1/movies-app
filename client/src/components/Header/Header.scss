@@ -3,7 +3,7 @@
 header {
   padding-top: 20px;
   background-color: #3a3a3a;
-  &.authorized {
+  &.show {
     background: url("../../assets/bg.svg") no-repeat center;
     background-size: cover;
     height: 396px;
@@ -13,23 +13,92 @@ header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
       &__logo {
       }
-      &__add {
-      }
-      &__profile {
-      }
-      &__register {
-        background-color: $color-red;
-        border: none;
-        color: $color-white;
-        text-transform: uppercase;
-        padding: 10px 30px;
-        cursor: pointer;
-        &:active {
-          transform: scale(0.9);
+      .admin_user {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        &__add {
+          color: $color-red;
+          font-weight: 600;
+          font-size: 20px;
+          padding: 11px 18px;
+          background-color: rgba(96, 96, 96, 0.68);
+          border: none;
+          cursor: pointer;
+          border: 1px solid #606060;
+          border-radius: 4px;
+          &:active {
+            transform: scale(0.9);
+          }
         }
       }
+
+      &__profile {
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        background-color: #606060;
+        color: $color-red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 20px;
+        text-transform: uppercase;
+      }
+
+      .settings {
+        position: absolute;
+        right: 10px;
+        bottom: -130px;
+        background-color: $color-black;
+        width: 190px;
+        height: 121px;
+        display: none;
+        &.active {
+          display: block;
+        }
+        ul {
+          list-style-type: none;
+          display: flex;
+          flex-direction: column;
+          gap: 22px;
+          margin-top: 29px;
+          text-align: left;
+          li {
+            cursor: pointer;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            &:first-child {
+              padding-left: 23px;
+            }
+            &:hover {
+              background-color: $color-red;
+            }
+            color: $color-white;
+            text-transform: uppercase;
+            text-decoration: none;
+            .logout {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              padding-left: 23px;
+              color: $color-white;
+              background-color: transparent;
+              border: none;
+              cursor: pointer;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+
       .nav_buttons {
       }
     }
