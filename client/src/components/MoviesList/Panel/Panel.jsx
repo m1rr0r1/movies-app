@@ -4,7 +4,7 @@ import "./Panel.scss";
 const Panel = ({ setMovies }) => {
   const genres = ["", "documentary", "comedy", "horror", "crime"];
   const [activeGenre, setActiveGenre] = useState("");
-  const [sortBy, setSortBy] = useState("Release");
+  const [sortBy, setSortBy] = useState("DATE");
 
   const setGenre = async (genre) => {
     setActiveGenre(genre);
@@ -28,8 +28,8 @@ const Panel = ({ setMovies }) => {
   };
 
   const toggleSortBy = () => {
-    if (sortBy === "release") setSortBy("title");
-    else setSortBy("release");
+    if (sortBy === "DATE") setSortBy("TITLE");
+    else setSortBy("DATE");
   };
 
   return (

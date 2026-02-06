@@ -1,0 +1,51 @@
+@use "../../sass/base/variables.scss" as *;
+
+.modal {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transition: 1s;
+  transform: translateX(-50%);
+  color: $color-white;
+  background-color: $color-black;
+  padding-right: 82px;
+  padding-bottom: 70px;
+  text-align: left;
+  padding-left: 82px;
+  padding-top: 63px;
+  z-index: 1;
+  &.activeModal {
+    top: 123px;
+  }
+  h2 {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 30px;
+  }
+  p {
+    margin-top: 37px;
+    font-size: 20px;
+  }
+  .confirm {
+    margin-top: 52px;
+    display: flex;
+    justify-self: flex-end;
+    background-color: $color-red;
+    color: $color-white;
+    border: 1px solid $color-red;
+    border-radius: 4px;
+    padding: 12px 36px;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+  .close_modal {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+}

@@ -5,18 +5,19 @@ import UserForm from "./components/forms/UserForm/UserForm";
 import Footer from "./components/Footer/Footer";
 import MoviesList from "./components/MoviesList/MoviesList";
 import MovieForm from "./components/forms/MovieForm/MovieForm";
+import Modal from "./common/Modal/Modal";
 
 const App = () => {
   const [auth, setAuth] = useState({
-    user: JSON.parse(localStorage.getItem("user")) || null,
-    token: localStorage.getItem("token") || null,
-  });
-  const [hideHeader, setHideHeader] = useState(false);
-  const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState("");
-  const [totalAmount, setTotalAmount] = useState("");
-
-  const navigate = useNavigate();
+      user: JSON.parse(localStorage.getItem("user")) || null,
+      token: localStorage.getItem("token") || null,
+    }),
+    [hideHeader, setHideHeader] = useState(false),
+    [movies, setMovies] = useState([]),
+    [query, setQuery] = useState(""),
+    [totalAmount, setTotalAmount] = useState(""),
+    [activeModal, setActiveModal] = useState(false),
+    navigate = useNavigate();
 
   useEffect(() => {
     !auth.token
@@ -54,11 +55,15 @@ const App = () => {
               query={query}
               movies={movies}
               setMovies={setMovies}
+              role={auth.user.role}
+              setActiveModal={setActiveModal}
             />
           }
         />
         <Route path="/movies/add" element={<MovieForm />} />
       </Routes>
+      <Modal activeModal={activeModal} setActiveModal={setActiveModal} />
+      {activeModal && <div className="overlay"></div>}
       <Footer />
     </>
   );

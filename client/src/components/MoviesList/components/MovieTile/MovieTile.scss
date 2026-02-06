@@ -5,6 +5,44 @@
   color: $color-white;
   text-align: left;
   cursor: pointer;
+  position: relative;
+  .admin_settings {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    width: 36px;
+    height: 36px;
+    background-color: $color-black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .settings_menu {
+    display: none;
+    position: absolute;
+    right: 25px;
+    top: 62px;
+    background-color: $color-black;
+    width: 150px;
+    ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+
+      li {
+        text-transform: capitalize;
+        padding: 7px 14px 8px 23px;
+        &:hover {
+          background-color: $color-red;
+        }
+      }
+    }
+    &.active {
+      display: block;
+    }
+  }
   img {
     width: 100%;
   }
