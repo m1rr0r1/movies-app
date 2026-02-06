@@ -12,6 +12,7 @@ const MoviesList = ({
   role,
   setActiveModal,
   setCurrentMovie,
+  setHideHeader,
 }) => {
   const LIMIT = 6;
 
@@ -53,6 +54,7 @@ const MoviesList = ({
               role={role}
               movie={movie}
               setCurrentMovie={setCurrentMovie}
+              setHideHeader={setHideHeader}
             />
           ))}
         </div>

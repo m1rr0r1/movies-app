@@ -1,6 +1,6 @@
 import React, { act, useState } from "react";
 import logo from "../../assets/logo.svg";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, Link, useParams } from "react-router";
 import "./Header.scss";
 
 const Header = ({
@@ -12,6 +12,8 @@ const Header = ({
   setQuery,
   setMovies,
   setTotalAmount,
+  currentMovie,
+  setCurrentMovie,
 }) => {
   const [activeProfile, setActiveProfile] = useState(false);
 
@@ -42,6 +44,7 @@ const Header = ({
   const addMovie = () => {
     navigate("/movies/add");
     setHideHeader(true);
+    setCurrentMovie({});
   };
 
   const handleQuery = (e) => {
@@ -72,11 +75,14 @@ const Header = ({
   };
 
   return (
-    <header onClick={closeProfile} className={!hideHeader && token && "show"}>
+    <header
+      onClick={closeProfile}
+      className={!hideHeader && token ? "show" : null}
+    >
       <div className="container">
         <nav className="nav">
           <img className="nav__logo" src={logo} alt="logo" />
-          {token && !hideHeader && (
+          {token && (!hideHeader || JSON.stringify(currentMovie) !== "{}") && (
             <>
               {role === "admin" ? (
                 <div className="admin_user">

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Modal.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router";
 
 const Modal = ({
   activeModal,
@@ -9,13 +10,15 @@ const Modal = ({
   currentMovie: { id },
   setMovies,
 }) => {
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+
   const closeModal = () => {
       setActiveModal(false);
+      setSuccess(false);
       document.body.style.overflow = "";
     },
     confirm = async () => {
-      setActiveModal(false);
-      document.body.style.overflow = "";
       try {
         const response = await fetch(`http://localhost:4000/movies/${id}`, {
           method: "DELETE",
@@ -26,6 +29,8 @@ const Modal = ({
           const data = await response.json();
           console.log("Deleted successfully", data);
           setMovies((prev) => prev.filter((movie) => movie.id !== id));
+          setSuccess(true);
+          navigate("/movies");
           return true;
         } else {
           console.log(
@@ -46,11 +51,23 @@ const Modal = ({
         className="close_modal"
         icon={faXmark}
       />
-      <h2>delete movie</h2>
-      <p>Are you sure you want to delete this movie?</p>
-      <button onClick={confirm} className="confirm">
-        confirm
-      </button>
+      {!success ? (
+        <>
+          <h2>delete movie</h2>
+          <p>Are you sure you want to delete this movie?</p>
+          <button onClick={confirm} className="confirm">
+            confirm
+          </button>
+        </>
+      ) : (
+        <>
+          <div className="check_wrapper">
+            <FontAwesomeIcon className="check" icon={faCheck} />
+          </div>
+          <h2 className="congrats">congratulations!</h2>
+          <p>The movie has been successfully deleted!</p>
+        </>
+      )}
     </div>
   );
 };

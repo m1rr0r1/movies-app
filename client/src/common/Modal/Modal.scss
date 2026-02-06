@@ -48,4 +48,22 @@
     font-size: 25px;
     cursor: pointer;
   }
+  .check_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $color-red;
+    border-radius: 50%;
+    background-color: $color-red;
+    width: 50px;
+    height: 50px;
+    justify-self: center;
+    .check {
+      font-size: 30px;
+    }
+  }
+  .congrats {
+    margin-top: 30px;
+    text-align: center;
+  }
 }

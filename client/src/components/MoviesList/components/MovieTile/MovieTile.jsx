@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router";
 import "./MovieTile.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
@@ -6,9 +7,10 @@ import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 const MovieTile = ({
   role,
   movie,
-  movie: { poster_path, title, genres, release_date },
+  movie: { id, poster_path, title, genres, release_date },
   setActiveModal,
   setCurrentMovie,
+  setHideHeader,
 }) => {
   const [activeSettings, setActiveSettings] = useState(false);
 
@@ -22,6 +24,12 @@ const MovieTile = ({
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
     setCurrentMovie(movie);
+  };
+
+  const hideHeader = () => {
+    setHideHeader(true);
+    setCurrentMovie(movie);
+    window.scroll(0, 0);
   };
 
   return (
@@ -43,7 +51,9 @@ const MovieTile = ({
           </div>
         </>
       )}
-      <img className="movie_card__image" src={poster_path} alt="movie_card" />
+      <Link onClick={hideHeader} to={`/movies/${id}`}>
+        <img className="movie_card__image" src={poster_path} alt="movie_card" />
+      </Link>
       <div className="movie_card__info">
         <h3 className="movie_card__info__title">{title}</h3>
         <div className="movie_card__info__release_date">

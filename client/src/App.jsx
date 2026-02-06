@@ -5,6 +5,7 @@ import UserForm from "./components/forms/UserForm/UserForm";
 import Footer from "./components/Footer/Footer";
 import MoviesList from "./components/MoviesList/MoviesList";
 import MovieForm from "./components/forms/MovieForm/MovieForm";
+import MovieDetails from "./components/MoviesList/components/MovieDetails/MovieDetails";
 import Modal from "./common/Modal/Modal";
 
 const App = () => {
@@ -42,6 +43,8 @@ const App = () => {
         setQuery={setQuery}
         setMovies={setMovies}
         setTotalAmount={setTotalAmount}
+        currentMovie={currentMovie}
+        setCurrentMovie={setCurrentMovie}
       />
       <Routes>
         <Route
@@ -64,7 +67,14 @@ const App = () => {
               role={auth.user.role}
               setActiveModal={setActiveModal}
               setCurrentMovie={setCurrentMovie}
+              setHideHeader={setHideHeader}
             />
+          }
+        />
+        <Route
+          path="/movies/:id"
+          element={
+            <MovieDetails setActiveModal={setActiveModal} movies={movies} />
           }
         />
         <Route path="/movies/add" element={<MovieForm />} />
