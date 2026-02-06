@@ -11,6 +11,7 @@ const MoviesList = ({
   setTotalAmount,
   role,
   setActiveModal,
+  setCurrentMovie,
 }) => {
   const LIMIT = 6;
 
@@ -45,11 +46,13 @@ const MoviesList = ({
           <span>{totalAmount}</span> movies found
         </div>
         <div className="movies__wrapper">
-          {movies.map((movie, i) => (
+          {movies.map((movie) => (
             <MovieTile
+              key={movie.id}
               setActiveModal={setActiveModal}
               role={role}
               movie={movie}
+              setCurrentMovie={setCurrentMovie}
             />
           ))}
         </div>

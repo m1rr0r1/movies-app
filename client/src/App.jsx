@@ -17,6 +17,7 @@ const App = () => {
     [query, setQuery] = useState(""),
     [totalAmount, setTotalAmount] = useState(""),
     [activeModal, setActiveModal] = useState(false),
+    [currentMovie, setCurrentMovie] = useState({}),
     navigate = useNavigate();
 
   useEffect(() => {
@@ -24,6 +25,11 @@ const App = () => {
       ? navigate("/login", { replace: true })
       : navigate("/movies", { replace: true });
   }, []);
+
+  const closeModal = () => {
+    setActiveModal(false);
+    document.body.style.overflow = "";
+  };
 
   return (
     <>
@@ -57,13 +63,19 @@ const App = () => {
               setMovies={setMovies}
               role={auth.user.role}
               setActiveModal={setActiveModal}
+              setCurrentMovie={setCurrentMovie}
             />
           }
         />
         <Route path="/movies/add" element={<MovieForm />} />
       </Routes>
-      <Modal activeModal={activeModal} setActiveModal={setActiveModal} />
-      {activeModal && <div className="overlay"></div>}
+      <Modal
+        currentMovie={currentMovie}
+        activeModal={activeModal}
+        setActiveModal={setActiveModal}
+        setMovies={setMovies}
+      />
+      {activeModal && <div onClick={closeModal} className="overlay"></div>}
       <Footer />
     </>
   );

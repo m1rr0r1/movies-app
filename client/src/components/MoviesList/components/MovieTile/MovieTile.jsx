@@ -5,8 +5,10 @@ import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 
 const MovieTile = ({
   role,
+  movie,
   movie: { poster_path, title, genres, release_date },
   setActiveModal,
+  setCurrentMovie,
 }) => {
   const [activeSettings, setActiveSettings] = useState(false);
 
@@ -19,6 +21,7 @@ const MovieTile = ({
     setActiveSettings(false);
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
+    setCurrentMovie(movie);
   };
 
   return (
