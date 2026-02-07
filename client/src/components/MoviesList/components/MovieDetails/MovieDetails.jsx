@@ -2,20 +2,25 @@ import React, { useEffect } from "react";
 import "./MovieDetails.scss";
 import { useNavigate, useParams } from "react-router";
 
-const MovieDetails = ({ movies, setActiveModal }) => {
+const MovieDetails = ({
+  movies,
+  setActiveModal,
+  setHideHeader,
+  setHideProfile,
+  role,
+}) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const movie = movies.find((movie) => movie.id === parseInt(id));
 
   useEffect(() => {
-    if (!movie) {
-      navigate("/movies/", { replace: true });
-    }
+    setHideHeader(true);
   }, []);
 
   const goBack = () => {
     navigate("/movies", { replace: true });
+    setHideHeader(false);
   };
 
   const deleteMovie = () => {
@@ -23,6 +28,12 @@ const MovieDetails = ({ movies, setActiveModal }) => {
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
     // setCurrentMovie(movie);
+  };
+
+  const editMovie = () => {
+    navigate(`/movies/edit/${id}`);
+    setHideHeader(true);
+    setHideProfile(true);
   };
 
   return (
@@ -56,12 +67,16 @@ const MovieDetails = ({ movies, setActiveModal }) => {
             {(movie?.runtime / 60).toFixed(2)[3]}min
           </span>
           <p className="second_wrapper__description">{movie?.overview}</p>
-          <div className="buttons">
-            <button onClick={deleteMovie} className="buttons__delete">
-              delete
-            </button>
-            <button className="buttons__edit">edit</button>
-          </div>
+          {role === "admin" && (
+            <div className="buttons">
+              <button onClick={deleteMovie} className="buttons__delete">
+                delete
+              </button>
+              <button onClick={editMovie} className="buttons__edit">
+                edit
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

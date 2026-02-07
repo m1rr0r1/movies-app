@@ -13,31 +13,8 @@ const MoviesList = ({
   setActiveModal,
   setCurrentMovie,
   setHideHeader,
+  setHideProfile,
 }) => {
-  const LIMIT = 6;
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:4000/movies?limit=" + LIMIT,
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          //   console.log(data);
-          setMovies(data.data);
-          setTotalAmount(data.totalAmount);
-        } else {
-          console.log("Error");
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchMovies();
-  }, []);
-
   return (
     <section className="movies">
       <div className="container">
@@ -55,6 +32,7 @@ const MoviesList = ({
               movie={movie}
               setCurrentMovie={setCurrentMovie}
               setHideHeader={setHideHeader}
+              setHideProfile={setHideProfile}
             />
           ))}
         </div>

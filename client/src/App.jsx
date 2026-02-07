@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, replace } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 import Header from "./components/Header/Header";
 import UserForm from "./components/forms/UserForm/UserForm";
 import Footer from "./components/Footer/Footer";
@@ -7,6 +7,7 @@ import MoviesList from "./components/MoviesList/MoviesList";
 import MovieForm from "./components/forms/MovieForm/MovieForm";
 import MovieDetails from "./components/MoviesList/components/MovieDetails/MovieDetails";
 import Modal from "./common/Modal/Modal";
+import ProtectedLayout from "./components/ProtectedLayout/ProtectedLayout";
 
 const App = () => {
   const [auth, setAuth] = useState({
@@ -19,18 +20,36 @@ const App = () => {
     [totalAmount, setTotalAmount] = useState(""),
     [activeModal, setActiveModal] = useState(false),
     [currentMovie, setCurrentMovie] = useState({}),
-    navigate = useNavigate();
-
-  useEffect(() => {
-    !auth.token
-      ? navigate("/login", { replace: true })
-      : navigate("/movies", { replace: true });
-  }, []);
+    [hideProfile, setHideProfile] = useState(false),
+    navigate = useNavigate(),
+    LIMIT = 6;
 
   const closeModal = () => {
     setActiveModal(false);
     document.body.style.overflow = "";
   };
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:4000/movies?limit=" + LIMIT,
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          //   console.log(data);
+          setMovies(data.data);
+          setTotalAmount(data.totalAmount);
+        } else {
+          console.log("Error");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchMovies();
+  }, []);
 
   return (
     <>
@@ -44,7 +63,9 @@ const App = () => {
         setMovies={setMovies}
         setTotalAmount={setTotalAmount}
         currentMovie={currentMovie}
-        setCurrentMovie={setCurrentMovie}
+        hideProfile={hideProfile}
+        setHideProfile={setHideProfile}
+        // setCurrentMovie={setCurrentMovie}
       />
       <Routes>
         <Route
@@ -55,29 +76,56 @@ const App = () => {
           path="/registration"
           element={<UserForm mode="registration" />}
         />
-        <Route
-          path="/movies"
-          element={
-            <MoviesList
-              setTotalAmount={setTotalAmount}
-              totalAmount={totalAmount}
-              query={query}
-              movies={movies}
-              setMovies={setMovies}
-              role={auth.user.role}
-              setActiveModal={setActiveModal}
-              setCurrentMovie={setCurrentMovie}
-              setHideHeader={setHideHeader}
-            />
-          }
-        />
-        <Route
-          path="/movies/:id"
-          element={
-            <MovieDetails setActiveModal={setActiveModal} movies={movies} />
-          }
-        />
-        <Route path="/movies/add" element={<MovieForm />} />
+        <Route element={<ProtectedLayout auth={auth} />}>
+          <Route
+            path="/movies"
+            element={
+              <MoviesList
+                setTotalAmount={setTotalAmount}
+                totalAmount={totalAmount}
+                query={query}
+                movies={movies}
+                setMovies={setMovies}
+                role={auth?.user?.role}
+                setActiveModal={setActiveModal}
+                setCurrentMovie={setCurrentMovie}
+                setHideHeader={setHideHeader}
+                setHideProfile={setHideProfile}
+              />
+            }
+          />
+          <Route
+            path="/movies/:id"
+            element={
+              <MovieDetails
+                setHideHeader={setHideHeader}
+                setActiveModal={setActiveModal}
+                movies={movies}
+                setHideProfile={setHideProfile}
+                role={auth?.user?.role}
+              />
+            }
+          />
+          <Route
+            path="/movies/add"
+            element={
+              <MovieForm
+                setHideHeader={setHideHeader}
+                setHideProfile={setHideProfile}
+              />
+            }
+          />
+          <Route
+            path="/movies/edit/:id"
+            element={
+              <MovieForm
+                setHideHeader={setHideHeader}
+                setHideProfile={setHideProfile}
+              />
+            }
+          />
+        </Route>
+        <Route path="*" element={<div>Page not found</div>} />
       </Routes>
       <Modal
         currentMovie={currentMovie}

@@ -2,12 +2,13 @@
 
 header {
   padding-top: 20px;
-  // background-color: #3a3a3a;
-  // height: 100px;
   &.show {
     background: url("../../assets/bg.svg") no-repeat center;
     background-size: cover;
     height: 396px;
+  }
+  &.switch_color {
+    background-color: #3a3a3a;
   }
   .container {
     .nav {

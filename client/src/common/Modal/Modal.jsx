@@ -15,7 +15,9 @@ const Modal = ({
 
   const closeModal = () => {
       setActiveModal(false);
-      setSuccess(false);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 1000);
       document.body.style.overflow = "";
     },
     confirm = async () => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import "./MovieTile.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
@@ -11,8 +11,10 @@ const MovieTile = ({
   setActiveModal,
   setCurrentMovie,
   setHideHeader,
+  setHideProfile,
 }) => {
   const [activeSettings, setActiveSettings] = useState(false);
+  const navigate = useNavigate();
 
   const toggleSettings = () => {
     setActiveSettings((activeSettings) => !activeSettings);
@@ -28,8 +30,14 @@ const MovieTile = ({
 
   const hideHeader = () => {
     setHideHeader(true);
-    setCurrentMovie(movie);
+    // setCurrentMovie(movie);
     window.scroll(0, 0);
+  };
+
+  const editMovie = () => {
+    navigate(`/movies/edit/${id}`);
+    setHideHeader(true);
+    setHideProfile(true);
   };
 
   return (
@@ -45,7 +53,7 @@ const MovieTile = ({
             }
           >
             <ul>
-              <li>edit</li>
+              <li onClick={editMovie}>edit</li>
               <li onClick={openModal}>delete</li>
             </ul>
           </div>

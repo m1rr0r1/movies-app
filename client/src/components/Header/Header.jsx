@@ -12,8 +12,8 @@ const Header = ({
   setQuery,
   setMovies,
   setTotalAmount,
-  currentMovie,
-  setCurrentMovie,
+  hideProfile,
+  setHideProfile,
 }) => {
   const [activeProfile, setActiveProfile] = useState(false);
 
@@ -44,7 +44,8 @@ const Header = ({
   const addMovie = () => {
     navigate("/movies/add");
     setHideHeader(true);
-    setCurrentMovie({});
+    setHideProfile(true);
+    // setCurrentMovie({});
   };
 
   const handleQuery = (e) => {
@@ -77,12 +78,12 @@ const Header = ({
   return (
     <header
       onClick={closeProfile}
-      className={!hideHeader && token ? "show" : null}
+      className={!hideHeader && token ? "show" : !token ? "switch_color" : null}
     >
       <div className="container">
         <nav className="nav">
           <img className="nav__logo" src={logo} alt="logo" />
-          {token && (!hideHeader || JSON.stringify(currentMovie) !== "{}") && (
+          {token && (!hideHeader || !hideProfile) && (
             <>
               {role === "admin" ? (
                 <div className="admin_user">
