@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router";
+import { Routes, Route, useNavigate, Navigate, useFetcher } from "react-router";
 import Header from "./components/Header/Header";
 import UserForm from "./components/forms/UserForm/UserForm";
 import Footer from "./components/Footer/Footer";
@@ -69,6 +69,16 @@ const App = () => {
       />
       <Routes>
         <Route
+          path="/"
+          element={
+            auth.token ? (
+              <Navigate to="/movies" replace />
+            ) : (
+              <Navigate to="login" replace />
+            )
+          }
+        />
+        <Route
           path="/login"
           element={<UserForm setAuth={setAuth} mode="login" />}
         />
@@ -112,6 +122,7 @@ const App = () => {
               <MovieForm
                 setHideHeader={setHideHeader}
                 setHideProfile={setHideProfile}
+                mode="add"
               />
             }
           />
@@ -121,6 +132,7 @@ const App = () => {
               <MovieForm
                 setHideHeader={setHideHeader}
                 setHideProfile={setHideProfile}
+                mode="edit"
               />
             }
           />

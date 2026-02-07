@@ -11,6 +11,9 @@ html {
 body {
   text-align: center;
   background-color: $color-black;
+  &.change-color {
+    background-color: #3a3a3a;
+  }
   font-family: "Montserrat", sans-serif;
   .container {
     max-width: 1080px;
