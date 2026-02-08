@@ -18,7 +18,7 @@ const Panel = ({ setMovies }) => {
         const data = await response.json();
         console.log(data);
         setMovies(data.data);
-        setTotalAmount(data.data.length);
+        // setTotalAmount(data.data.length);
       } else {
         console.log("Error");
       }

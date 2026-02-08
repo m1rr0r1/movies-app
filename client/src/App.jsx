@@ -21,11 +21,14 @@ const App = () => {
     [activeModal, setActiveModal] = useState(false),
     [currentMovie, setCurrentMovie] = useState({}),
     [hideProfile, setHideProfile] = useState(false),
+    [addMovie, setAddMovie] = useState(false),
+    [refetch, setRefetch] = useState(false),
     navigate = useNavigate(),
     LIMIT = 6;
 
   const closeModal = () => {
     setActiveModal(false);
+    setAddMovie(false);
     document.body.style.overflow = "";
   };
 
@@ -49,7 +52,13 @@ const App = () => {
       }
     };
     fetchMovies();
-  }, []);
+  }, [refetch]);
+
+  useEffect(() => {
+    document.body.classList.remove("change-color");
+    setHideHeader(false);
+    setHideProfile(false);
+  }, [navigate]);
 
   return (
     <>
@@ -113,6 +122,7 @@ const App = () => {
                 movies={movies}
                 setHideProfile={setHideProfile}
                 role={auth?.user?.role}
+                setCurrentMovie={setCurrentMovie}
               />
             }
           />
@@ -123,6 +133,10 @@ const App = () => {
                 setHideHeader={setHideHeader}
                 setHideProfile={setHideProfile}
                 mode="add"
+                setMovies={setMovies}
+                setAddMovie={setAddMovie}
+                setActiveModal={setActiveModal}
+                setRefetch={setRefetch}
               />
             }
           />
@@ -133,6 +147,7 @@ const App = () => {
                 setHideHeader={setHideHeader}
                 setHideProfile={setHideProfile}
                 mode="edit"
+                // setMovies={setMovies}
               />
             }
           />
@@ -144,6 +159,9 @@ const App = () => {
         activeModal={activeModal}
         setActiveModal={setActiveModal}
         setMovies={setMovies}
+        addMovie={addMovie}
+        setAddMovie={setAddMovie}
+        setHideHeader={setHideHeader}
       />
       {activeModal && <div onClick={closeModal} className="overlay"></div>}
       <Footer />

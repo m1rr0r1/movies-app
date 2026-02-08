@@ -53,6 +53,11 @@
           opacity: 0.8;
           font-weight: 600;
           row-gap: 13px;
+          .error {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+          }
         }
         .title,
         .poster,
@@ -68,7 +73,7 @@
             width: 100%;
             height: 40px;
             opacity: 0.8;
-            padding-left: 18px;
+            padding-left: 13px;
           }
         }
         .date,
@@ -88,6 +93,7 @@
             padding-left: 18px;
             padding-top: 18px;
             opacity: 0.8;
+            color: $color-white;
           }
         }
         .buttons {

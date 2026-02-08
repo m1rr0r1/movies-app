@@ -8,6 +8,7 @@ const MovieDetails = ({
   setHideHeader,
   setHideProfile,
   role,
+  setCurrentMovie,
 }) => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const MovieDetails = ({
     setActiveModal(true);
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
-    // setCurrentMovie(movie);
+    setCurrentMovie(movie);
   };
 
   const editMovie = () => {

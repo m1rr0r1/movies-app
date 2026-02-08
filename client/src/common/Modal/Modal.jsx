@@ -9,12 +9,16 @@ const Modal = ({
   setActiveModal,
   currentMovie: { id },
   setMovies,
+  addMovie,
+  setAddMovie,
+  setHideHeader,
 }) => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const closeModal = () => {
       setActiveModal(false);
+      setAddMovie(false);
       setTimeout(() => {
         setSuccess(false);
       }, 1000);
@@ -32,6 +36,7 @@ const Modal = ({
           console.log("Deleted successfully", data);
           setMovies((prev) => prev.filter((movie) => movie.id !== id));
           setSuccess(true);
+          setHideHeader(false);
           navigate("/movies");
           return true;
         } else {
@@ -53,7 +58,15 @@ const Modal = ({
         className="close_modal"
         icon={faXmark}
       />
-      {!success ? (
+      {addMovie ? (
+        <>
+          <div className="check_wrapper">
+            <FontAwesomeIcon className="check" icon={faCheck} />
+          </div>
+          <h2 className="congrats">congratulations!</h2>
+          <p>The movie has been added to database successfully!</p>
+        </>
+      ) : !success ? (
         <>
           <h2>delete movie</h2>
           <p>Are you sure you want to delete this movie?</p>

@@ -11,10 +11,10 @@ const UserForm = ({ mode, setAuth }) => {
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (type) => {
+  const handleSubmit = async () => {
     setAttemptedSubmit(true);
 
-    if (type === "login") {
+    if (mode === "login") {
       if (email && password) {
         try {
           const response = await fetch("http://localhost:4000/me/login", {
@@ -77,7 +77,7 @@ const UserForm = ({ mode, setAuth }) => {
       setEmail(value.trim());
     } else if (id === "password") {
       setPassword(value.trim());
-    } else {
+    } else if (id === "name") {
       setName(value.trim());
     }
     setError("");
@@ -105,7 +105,7 @@ const UserForm = ({ mode, setAuth }) => {
               <input
                 required
                 value={name}
-                onChange={(e) => handleInput(e)}
+                onChange={handleInput}
                 id="name"
                 type="text"
                 placeholder="enter name"
@@ -117,7 +117,7 @@ const UserForm = ({ mode, setAuth }) => {
             <input
               required
               value={email}
-              onChange={(e) => handleInput(e)}
+              onChange={handleInput}
               id="email"
               type="email"
               placeholder="enter email"
@@ -129,7 +129,7 @@ const UserForm = ({ mode, setAuth }) => {
               required
               id="password"
               value={password}
-              onChange={(e) => handleInput(e)}
+              onChange={handleInput}
               type="password"
               placeholder="enter password"
             />
@@ -149,23 +149,13 @@ const UserForm = ({ mode, setAuth }) => {
             <button onClick={reset} type="button" className="reset_button">
               reset
             </button>
-            {mode === "login" ? (
-              <button
-                onClick={() => handleSubmit("login")}
-                className="login_button"
-                type="button"
-              >
-                login
-              </button>
-            ) : (
-              <button
-                onClick={() => handleSubmit("registration")}
-                className="register_button"
-                type="button"
-              >
-                register
-              </button>
-            )}
+            <button
+              onClick={handleSubmit}
+              className={mode === "login" ? "login_button" : "register_button"}
+              type="button"
+            >
+              {mode === "login" ? "login" : "register"}
+            </button>
           </div>
         </form>
       </div>
